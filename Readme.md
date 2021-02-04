@@ -18,3 +18,12 @@ The Model View ViewModel design pattern is typical for `SwiftUI` . It is (in som
 `SwiftUI` fundamentally differs from Apple's previous frameworks below the hood. Consider how view-level state is governed. For example, a similar iOS applciation like [BlueSky](https://github.com/derekquinn/ios-bluesky) contains delegates & data sources that are common in `UIKit`. Instead, `SwiftUI` contains a score of exciting [property wrappers](https://www.hackingwithswift.com/quick-start/swiftui/all-swiftui-property-wrappers-explained-and-compared). This application employs state management as outlined below.  
 - In `WeatherView`, `@ObservedObject` is applied to the `viewModel` to link it to an external class, in this case `WeatherViewModel`.
 - `WeatherViewModel` conforms to `ObservableObject`which allows the data to be shared across views. One caveat here is that `WeatherViewModel` has to contain a `class` (`struct` will not work here). 
+
+## A note on (the wonderful) Codable
+### Decoding
+- Codable is the bridge between JSON and swift.  Say we have JSON coming in from an API representing Weather data. We can convert this JSON into a `struct` by 
+defining a `struct` that matches the incoming JSON.  Then, all we need to do is use the `JSONDecoder` to decode the json, which matches the `Weather` type. The 
+JSON is **decoded** into a swift construct that we can access within our codebase. This is typically used to GET data from an API. 
+
+### Encoding
+- We can go from Swift to JSON by using the `JSONEncoder`. This process is essentially decoding in reverse, as we can go from a `struct` to `JSON`. This is used to send data TO an API using POST or PUT for example. 
