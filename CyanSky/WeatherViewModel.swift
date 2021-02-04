@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Weather {
+public struct WeatherViewModel {
     let city: String
     let temperature: String
     let description: String

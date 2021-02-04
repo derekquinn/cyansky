@@ -28,9 +28,9 @@ public final class WeatherService: NSObject {
     
     private let locationManager = CLLocationManager()
     private let OPENWEATHER_APIKEY = "2110c5dbe3f236eaab3ae14a09f1eeee"
-    private var completionHandler: ((Weather)-> Void)?
+    private var completionHandler: ((WeatherViewModel)-> Void)?
     
-    public func loadWeatherData(_ completionHandler: @escaping ((Weather)-> Void)){
+    public func loadWeatherData(_ completionHandler: @escaping ((WeatherViewModel)-> Void)){
         self.completionHandler = completionHandler
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -48,7 +48,7 @@ public final class WeatherService: NSObject {
             guard error == nil, let data = data else { return }
             
             if let response = try? JSONDecoder().decode(APIResponse.self, from: data) {
-                self.completionHandler?(Weather(response: response))
+                self.completionHandler?(WeatherViewModel(response: response))
             }
         }).resume()
     }
