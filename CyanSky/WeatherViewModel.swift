@@ -1,17 +1,38 @@
 import Foundation
 
-public struct WeatherViewModel {
-    let city: String
-    let temperature: String
-    let description: String
-    let iconName: String
+private let defaultIcon = "📡"
+private let iconMap = [
+    "Drizzle" : "☔️",
+    "Thunderstorm" : "⛈",
+    "Rain" : "🌧",
+    "Snow" : "☃️",
+    "Clear" : "😎",
+    "Clouds" :"🌫"
+]
+
+public class WeatherViewModel: ObservableObject {
     
-    init(response: APIResponse) {
-        
-        city = response.name
-        temperature = "\(Int(response.main.temp))"
-        description = response.weather.first?.description ?? ""
-        iconName = response.weather.first?.iconName ?? ""
-        
+    @Published var cityName: String = ""
+    @Published var temperature: String = ""
+    @Published var weatherDescription: String = ""
+    @Published var weatherIcon: String = defaultIcon
+    
+    public let weatherService: WeatherService
+    
+    public init(weatherService: WeatherService){
+        self.weatherService = weatherService
+    }
+    
+    public func refresh(){
+        weatherService.loadWeatherData { weather in
+            DispatchQueue.main.async {
+                self.cityName = weather.city
+                self.temperature = "\(weather.temperature)ºC"
+                self.weatherDescription = weather.description.capitalized
+                self.weatherIcon = iconMap[weather.iconName] ?? defaultIcon
+            }
+        }
     }
 }
+
+
