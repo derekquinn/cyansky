@@ -1,15 +1,8 @@
 import Foundation
 import CoreLocation
 
-public final class WeatherService: NSObject {
-    
-    private let locationManger = CLLocationManager()
-    private let OPENWEATHER_APIKEY = "2110c5dbe3f236eaab3ae14a09f1eeee"
-    private var completionHandler: (()-> Void)?
-    
-}
 
-struct APIResponse {
+struct APIResponse: Decodable {
     let name: String
     let main: APIMain
     let weather: [APIWeather]
@@ -30,3 +23,34 @@ struct APIWeather: Decodable {
     }
 }
 
+
+public final class WeatherService: NSObject {
+    
+    private let locationManager = CLLocationManager()
+    private let OPENWEATHER_APIKEY = "2110c5dbe3f236eaab3ae14a09f1eeee"
+    private var completionHandler: ((Weather)-> Void)?
+    
+    public func loadWeatherData(_ completionHandler: @escaping ((Weather)-> Void)){
+        self.completionHandler = completionHandler
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+    }
+    // api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+    
+    private func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
+        guard let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(OPENWEATHER_APIKEY)&units=metric".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+            
+            guard error == nil, let data = data else { return }
+            
+            if let response = try? JSONDecoder().decode(APIResponse.self, from: data) {
+                self.completionHandler?(Weather(response: response))
+            }
+        }).resume()
+    }
+    
+}
