@@ -7,7 +7,7 @@ private let iconMap = [
     "Rain" : "🌧",
     "Snow" : "☃️",
     "Clear" : "😎",
-    "Clouds" :"🌫"
+    "Clouds" :"☁️"
 ]
 
 public class WeatherViewModel: ObservableObject {
@@ -34,5 +34,3 @@ public class WeatherViewModel: ObservableObject {
         }
     }
 }
-
-

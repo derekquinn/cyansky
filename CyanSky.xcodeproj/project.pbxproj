@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C4AFE59225CBA56F00D002DF /* CyanSkyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFE59125CBA56F00D002DF /* CyanSkyApp.swift */; };
-		C4AFE59425CBA56F00D002DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFE59325CBA56F00D002DF /* ContentView.swift */; };
 		C4AFE59625CBA57100D002DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AFE59525CBA57100D002DF /* Assets.xcassets */; };
 		C4AFE59925CBA57100D002DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AFE59825CBA57100D002DF /* Preview Assets.xcassets */; };
 		C4AFE5A225CBA63A00D002DF /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFE5A125CBA63A00D002DF /* WeatherService.swift */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		C4AFE58E25CBA56F00D002DF /* CyanSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyanSky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AFE59125CBA56F00D002DF /* CyanSkyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyanSkyApp.swift; sourceTree = "<group>"; };
-		C4AFE59325CBA56F00D002DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C4AFE59525CBA57100D002DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4AFE59825CBA57100D002DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C4AFE59A25CBA57100D002DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				C4AFE59125CBA56F00D002DF /* CyanSkyApp.swift */,
-				C4AFE59325CBA56F00D002DF /* ContentView.swift */,
 				C4AFE59525CBA57100D002DF /* Assets.xcassets */,
 				C4AFE59A25CBA57100D002DF /* Info.plist */,
 				C4AFE59725CBA57100D002DF /* Preview Content */,
@@ -153,7 +150,6 @@
 				C4AFE5A825CBAE4700D002DF /* WeatherView.swift in Sources */,
 				C4AFE5AE25CBB26800D002DF /* WeatherViewModel.swift in Sources */,
 				C4AFE5A525CBA8FD00D002DF /* Weather.swift in Sources */,
-				C4AFE59425CBA56F00D002DF /* ContentView.swift in Sources */,
 				C4AFE5A225CBA63A00D002DF /* WeatherService.swift in Sources */,
 				C4AFE59225CBA56F00D002DF /* CyanSkyApp.swift in Sources */,
 			);
